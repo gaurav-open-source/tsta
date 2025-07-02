@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Tagore Tennis Academy</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #f8f7f4;
+  --secondary-color: #e8e5e0;
+  --accent-color: #d2691e;
+  --text-dark: #2a2a2a;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  --shadow-light: 0 4px 24px rgba(0, 0, 0, 0.06);
+  --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-heavy: 0 16px 48px rgba(0, 0, 0, 0.16);
+  --border-radius: 16px;
+  --border-radius-large: 24px;
+  --font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-family);
+  line-height: 1.6;
+  color: var(--text-dark);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Hero Section */
+.hero-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.7);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(42, 42, 42, 0.3) 0%, rgba(210, 105, 30, 0.2) 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 800px;
+  padding: 0 24px;
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 48px;
+  font-weight: 400;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.btn-primary {
+  background: var(--accent-color);
+  color: var(--white);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-primary:hover {
+  background: #c25a1a;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.15);
+  color: var(--white);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Navigation */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 16px 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.nav.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-dark);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.nav-cta {
+  background: var(--accent-color);
+  color: var(--white);
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.nav-cta:hover {
+  background: #c25a1a;
+  transform: translateY(-1px);
+}
+
+/* About Section */
+.about-section {
+  padding: 120px 0;
+  background: var(--primary-color);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.section-title {
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  letter-spacing: -0.02em;
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.about-content h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 24px;
+  letter-spacing: -0.01em;
+}
+
+.about-text {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  line-height: 1.7;
+}
+
+.about-visual {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.about-slideshow {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-medium);
+  overflow: hidden;
+  background: var(--white);
+}
+
+.about-slide {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  opacity: 0;
+  transition: opacity 0.6s;
+  object-fit: cover;
+  border-radius: var(--border-radius-large);
+}
+
+.about-slide.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  .about-slideshow, .about-slide { height: 180px; }
+  .about-visual { max-width: 100%; }
+  .about-slide {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    height: 180px;
+    object-fit: cover;
+    border-radius: var(--border-radius-large);
+  }
+}
+
+/* Programs Section */
+.programs-section {
+  padding: 120px 0;
+  background: var(--white);
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  margin-top: 64px;
+}
+
+.program-card {
+  background: var(--white);
+  border-radius: var(--border-radius-large);
+  padding: 40px;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--secondary-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), #e67e22);
+}
+
+.program-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.program-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+}
+
+.program-description {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.program-features {
+  list-style: none;
+}
+
+.program-features li {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.program-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* Facilities Section */
+.facilities-section {
+  padding: 120px 0;
+  background: var(--primary-color);
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 48px;
+  margin-top: 64px;
+}
+
+.facility-card {
+  background: var(--white);
+  border-radius: var(--border-radius-large);
+  overflow: hidden;
+  box-shadow: var(--shadow-light);
+  border: 1px solid var(--secondary-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.facility-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-heavy);
+}
+
+.facility-image-container {
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.facility-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.facility-card:hover .facility-image {
+  transform: scale(1.05);
+}
+
+.facility-content {
+  padding: 40px;
+}
+
+.facility-title {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--text-dark);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.facility-description {
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: 24px;
+  line-height: 1.6;
+}
+
+.facility-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.facility-features li {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.facility-features li::before {
+  content: '●';
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 120px 0;
+  background: var(--white);
+}
+
+.contact-info {
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--primary-color);
+  border: 1.5px solid var(--secondary-color);
+  border-radius: var(--border-radius-large);
+  box-shadow: var(--shadow-light);
+  padding: 40px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 1.08rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.contact-icon {
+  background: var(--accent-color);
+  color: #fff;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.contact-item a {
+  color: var(--accent-color);
+  text-decoration: none;
+  word-break: break-all;
+}
+
+.contact-item a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .contact-section { padding: 48px 0; }
+  .contact-info { padding: 24px 10px; }
+  .contact-item { font-size: 1rem; gap: 10px; }
+  .contact-icon { width: 24px; height: 24px; font-size: 14px; }
+}
+
+/* Footer */
+.footer {
+  background: var(--text-dark);
+  color: var(--white);
+  padding: 60px 0 40px;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 32px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer-contact {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-contact-item a {
+  color: var(--accent-color);
+  text-decoration: none;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  margin-top: 32px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 24px;
+  }
+  
+  .nav-links {
+    display: none;
+  }
+  
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .contact-info,
+  .contact-form {
+    padding: 32px 24px;
+  }
+  
+  .footer-contact {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .facilities-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 280px;
+  }
+  
+  .logo {
+    width: 60px;
+    top: 24px;
+    left: 24px;
+  }
+  
+  .container {
+    padding: 0 16px;
+  }
+  
+  .program-card {
+    padding: 32px 24px;
+  }
+  
+  .facility-card {
+    padding: 32px 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section,
+  .programs-section,
+  .facilities-section {
+    padding: 80px 0;
+  }
+  
+  .section-header {
+    margin-bottom: 48px;
+  }
+}
+
+/* Smooth animations */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.program-card,
+.btn {
+  will-change: transform;
+}
+</style>
+</style>
+</head>
+
+<body>
+
+<!-- Navigation Bar -->
+<nav class="nav" id="navbar">
+  <div class="nav-container">
+    
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#facilities">Facilities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    
+    <a href="tel:+911234567890" class="nav-cta">Call Now</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-container" id="home">
+  <img class="hero-image" src="img/bg.jpg" alt="Tennis Academy">
+  <div class="hero-overlay"></div>
+  
+  <div class="hero-content">
+    <h1 class="hero-title">Master Your Game at Tagore Tennis Academy</h1>
+    <p class="hero-subtitle">Premier tennis coaching in the heart of New Delhi. Where champions are made and dreams take flight.</p>
+    
+    <div class="hero-buttons">
+      <a href="tel:+919650500902" class="btn btn-primary">Call Now</a>
+      <a href="https://maps.app.goo.gl/p8ymi6ZB227kU3dr5" class="btn btn-secondary" target="_blank" rel="noopener">Visit Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">About Our Academy</h2>
+      <p class="section-subtitle">Located at the prestigious Tagore School in Mayapuri, New Delhi, our tennis academy has been nurturing tennis talent for over a decade with world-class coaching and facilities.</p>
+    </div>
+    <div class="about-grid">
+      <div class="about-content">
+        <h3>Where Excellence Meets Passion</h3>
+        <p class="about-text">
+          At Tagore School Tennis Academy, we believe that tennis is more than just a sport—it's a journey of personal growth, discipline, and achievement. Our academy combines traditional coaching methods with modern training techniques to develop well-rounded players.
+        </p>
+        <p class="about-text">
+          Whether you're a complete beginner or an aspiring professional, our experienced coaches provide personalized training programs that cater to your individual needs and goals.
+        </p>
+      </div>
+      <div class="about-visual">
+        <div class="about-slideshow">
+          <img class="about-slide active" src="img/IMG12.jpeg" alt="Academy Photo 1">
+          <img class="about-slide" src="img/IMG5.jpeg" alt="Academy Photo 2">
+          <img class="about-slide" src="img/IMG6.jpeg" alt="Academy Photo 3">
+          <img class="about-slide" src="img/IMG7.jpeg" alt="Academy Photo 4">
+          <img class="about-slide" src="img/IMG13.jpeg" alt="Academy Photo 2">
+          <img class="about-slide" src="img/IMG6.jpeg" alt="Academy Photo 3">
+          <img class="about-slide" src="img/IMG7.jpeg" alt="Academy Photo 4">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Training Programs Section -->
+<section class="programs-section" id="programs">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">Training Programs</h2>
+      <p class="section-subtitle">Choose from our comprehensive range of tennis programs designed for all skill levels and ages.</p>
+    </div>
+    
+    <div class="programs-grid">
+      <div class="program-card">
+        <h3 class="program-title">Beginner Program</h3>
+        <p class="program-description">
+          Perfect for those new to tennis. Learn the fundamentals with our patient and experienced coaches.
+        </p>
+        <ul class="program-features">
+          <li>Basic stroke techniques</li>
+          <li>Court positioning</li>
+          <li>Rules and scoring</li>
+          <li>Fun games and activities</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <h3 class="program-title">Intermediate Program</h3>
+        <p class="program-description">
+          Take your game to the next level with advanced techniques and strategic play.
+        </p>
+        <ul class="program-features">
+          <li>Advanced stroke development</li>
+          <li>Match play strategies</li>
+          <li>Physical conditioning</li>
+          <li>Mental toughness training</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <h3 class="program-title">Advanced Program</h3>
+        <p class="program-description">
+          Elite training for competitive players looking to excel in tournaments.
+        </p>
+        <ul class="program-features">
+          <li>Tournament preparation</li>
+          <li>Advanced tactics</li>
+          <li>Performance analysis</li>
+          <li>Specialized coaching</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <h3 class="program-title">Private Coaching</h3>
+        <p class="program-description">
+          One-on-one personalized training sessions tailored to your specific needs.
+        </p>
+        <ul class="program-features">
+          <li>Customized training plans</li>
+          <li>Flexible scheduling</li>
+          <li>Intensive skill development</li>
+          <li>Personal attention</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <h3 class="program-title">Recreational Tennis</h3>
+        <p class="program-description">
+          Enjoyable tennis programs for all skill levels in a friendly, welcoming environment.
+        </p>
+        <ul class="program-features">
+          <li>Relaxed learning atmosphere</li>
+          <li>Social tennis activities</li>
+          <li>Flexible participation</li>
+          <li>Community building</li>
+        </ul>
+      </div>
+      
+      <div class="program-card">
+        <h3 class="program-title">Court Rentals</h3>
+        <p class="program-description">
+          Professional-grade tennis courts available for rent by the hour for individuals and groups.
+        </p>
+        <ul class="program-features">
+          <li>Hourly court booking</li>
+          <li>Well-maintained surfaces</li>
+          <li>Equipment rental available</li>
+          <li>Flexible timing options</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Facilities Section -->
+<section class="facilities-section" id="facilities">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">World-Class Facilities</h2>
+      <p class="section-subtitle">Experience tennis training at its finest with our premium facilities and professional amenities.</p>
+    </div>
+    
+    <div class="facilities-grid">
+      <div class="facility-card">
+        <div class="facility-image-container">
+          <img class="facility-image" src="img/IMG3.jpeg" alt=" AITA & ITF certified professionals">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">AITA & ITF certified professionals</h3>
+          <p class="facility-description">
+            Our team of International Tennis Association certified coaches brings years of professional experience and proven teaching methods to help you reach your full potential.
+          </p>
+          <ul class="facility-features">
+            <li>AITA & ITF certified professionals</li>
+            <li>Personalized coaching approach</li>
+            <li>Proven track record</li>
+            <li>Continuous professional development</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="facility-card">
+        <div class="facility-image-container">
+          <img class="facility-image" src="img/IMG7.jpeg" alt="Quality Equipment">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Quality Equipment</h3>
+          <p class="facility-description">
+            Train with the best using our premium tennis equipment including professional-grade rackets, high-quality balls, and modern training aids.
+          </p>
+          <ul class="facility-features">
+            <li>Premium tennis balls</li>
+            <li>Professional rackets available</li>
+            <li>Modern training equipment</li>
+            <li>Regular equipment maintenance</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="facility-card">
+        <div class="facility-image-container">
+          <img class="facility-image" src="img/IMG4.jpeg" alt="Professional Courts">
+        </div>
+        <div class="facility-content">
+          <h3 class="facility-title">Professional Courts</h3>
+          <p class="facility-description">
+            Play on meticulously maintained professional courts that meet international standards, providing the perfect environment for skill development.
+          </p>
+          <ul class="facility-features">
+            <li>International standard courts</li>
+            <li>Regular maintenance</li>
+            <li>Optimal playing conditions</li>
+            <li>Multiple court surfaces</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="contact-icon">📞</span>
+        <span><a href="tel:+919650500902">+91 96505 00902</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">✉️</span>
+        <span><a href="mailto:info@tagoretennisacademy.com">info@tagoretennisacademy.com</a></span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon">📍</span>
+        <span><a href="https://maps.app.goo.gl/p8ymi6ZB227kU3dr5" target="_blank" rel="noopener">Tagore Senior Secondary School, Mayapuri, New Delhi, 110064, India</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-content">
+    
+    <p class="footer-text">
+      © 2023 Tagore School Tennis Academy. All rights reserved.
+    </p>
+    
+  </div>
+</footer>
+
+<script>
+// Smooth scroll behavior is handled by CSS
+// Navigation scroll behavior
+window.addEventListener('scroll', function() {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 100) {
+    navbar.classList.add('visible');
+  } else {
+    navbar.classList.remove('visible');
+  }
+});
+
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  });
+});
+
+// Form submission
+document.querySelector('.contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  // Get form data
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const message = document.getElementById('message').value;
+  
+  // Simple validation
+  if (name && email && message) {
+    alert('Thank you for your message! We will get back to you soon.');
+    this.reset();
+  } else {
+    alert('Please fill in all fields.');
+  }
+});
+
+// Add some entrance animations on scroll
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver(function(entries) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Observe elements for animation
+document.querySelectorAll('.program-card, .facility-card, .about-content, .about-visual').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// About slideshow
+window.addEventListener('DOMContentLoaded', function() {
+  var slides = document.querySelectorAll('.about-slide');
+  if (!slides.length) return;
+  var current = 0;
+  function showSlide(idx) {
+    slides.forEach(function(slide, i) {
+      slide.classList.toggle('active', i === idx);
+    });
+  }
+  showSlide(current); // Ensure the first slide is shown on load
+  setInterval(function() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }, 4000);
+});
+</script>
+
+</body>
+</html>
